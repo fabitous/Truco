@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Truco!</title>
+    <link rel="stylesheet" href="estilo.css" type="text/css"/>
+  </head>
+  <body>
+  <div id="game">
+   <section>
+    <h3 id="status">&nbsp;Valendo um tento</h3>
+    <div id="carta1" class="carta" onClick="Jogar(this.id)">/</div>
+    <div id="carta2" class="carta" onClick="Jogar(this.id)">/</div>
+    <div id="carta3" class="carta" onClick="Jogar(this.id)">/</div>
+    <div id="mesa"></div>
+   </section>
+   <section>
+    <div><button class="myBtn w3-btn w3-red" id="btn-truco" onClick="JogadorTrucar()">Trucar</button></div>
+    <p><span class="placar"><b>Seus tentos: </span><span id="playerpoints"></span></p></b>
+    <p><span class="placar"><b>Tentos do computador: </span><span id="computerpoints"></span></p></b>
+    <p id="regras"><a href="regras.html"><b>Regras do truco mineiro</b></a></p>
+    <script type="text/javascript" src="engine.js"></script>
+   </section>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+section {
+  font-family: Georgia, Serif;
+  display: inline;
+  float: left;
+}
+
+body {
+  background: #b87333;
+}
+
+img {
+  width: 104px;
+  height: 152px;
+}
+
+a {
+  color: #115522;
+}
+
+p {
+  font-size: 180%;
+}
+
+.carta {
+  width: 104px;
+  height: 152px;
+  display: inline-block;;
+  margin: 12px;
+}
+
+.myBtn {
+  margin: 8px;
+  height: 40px;
+  width: 110px;
+}
+
+.placar {
+  color: #206515;
+  margin: 9px;
+}
+
+#btn-truco {
+  margin-top: 30px;
+  background-color: red;
+  border-color: red;
+}
+
+#status {
+  color: #3020AA;
+  font-size: 180%;
+}
+
+#computerpoints, #playerpoints {
+    font-size: 140%;
+}
+
+#mesa {
+  width: 290px;
+  height: 340px;
+  margin: 20px;
+  background-color: green;
+  padding: 20px;
+  padding-left: 220px;
+  padding-top: 40px;
+}
+
+#regras {
+  margin-left: 9px;
+  font-size: 100%;
+}
+
+#start_img {
+  width: 600px;
+  height: 497px;
+}
+
+#game {
+  margin: auto;
+  width: 50%;
+}
