@@ -68,7 +68,6 @@ function DarCartas() {
     document.getElementById("carta3").innerHTML = baralho[2];
     maoDoComputador = [baralho[3],baralho[4],baralho[5]];
     document.getElementById("mesa").innerHTML = " ";
-    jogada[0] = 0;
       if(vez == false && jogada[0] == 0) {
         JogarComputador();
       }
@@ -181,11 +180,8 @@ function JogadorTrucar() {
     }
 }
 
-var image = document.getElementById("trucoLadrao").src="trucoLadrao.gif";
-alert("OnLoad image" + image);
-
 function ComputadorTrucar() {
-  if(tento < 3) {
+  if(tento < 3 && i > 0)  {
     if(confirm("TTTTRRRRRRRRUUUUUUUCCCCOOOO LADRÃO!")) {
       tento = 3;
       document.getElementById("status").innerHTML = "&nbsp;Trucado!";

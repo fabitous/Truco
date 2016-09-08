@@ -18,7 +18,7 @@ a {
 }
 
 p {
-  font-size: 180%;
+  font-size: 150%;
 }
 
 .carta {
@@ -37,6 +37,10 @@ p {
 .placar {
   color: #206515;
   margin: 9px;
+}
+
+.pregras {
+  font-size: 180%;
 }
 
 #btn-truco {
