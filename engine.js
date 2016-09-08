@@ -68,6 +68,7 @@ function DarCartas() {
     document.getElementById("carta3").innerHTML = baralho[2];
     maoDoComputador = [baralho[3],baralho[4],baralho[5]];
     document.getElementById("mesa").innerHTML = " ";
+    jogada[0] = 0;
       if(vez == false && jogada[0] == 0) {
         JogarComputador();
       }
