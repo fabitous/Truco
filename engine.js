@@ -33,7 +33,7 @@ var baralho = [
   "<div class='estampa' valor='104' data_print='K ♠'><img src='img/K_espada.png'></img></div>",
 ]
 
-var darCartas = false;
+var darCartas = true;
 var indiceCarta = 0;
 var primeira;
 var cartaNaMesa;
@@ -48,23 +48,35 @@ var mapCartasCamputador = {
   2 : "cartaComputador3",
 };
 var jogadorTorna = false;
-var jogadorComecaRodada = confirm("Quer começar?");
+var jogadorComecaRodada = false;
 
-
-function game() {
-do{
-  if(darCartas) {
-    DarCartas();
-  }
-  if(jogadorComecaRodada || jogadorTorna) {
-    do{
-
-    }while(jogada[1] == 0)
-  } else {
+function jogo() {
+  var jogadorComecaRodada = confirm("Quer começar?");
+  DarCartas();
+  if(jogada[1] != 0) {
     JogarComputador();
   }
   VerificaCartasNaMesa();
-while(true);
+  if(jogada[1] != 0) {
+    JogarComputador();
+  }
+  VerificaCartasNaMesa();
+  if(jogada[1] != 0) {
+    JogarComputador();
+  }
+  VerificaCartasNaMesa();
+  if(jogada[1] != 0) {
+    JogarComputador();
+  }
+  VerificaCartasNaMesa();
+  if(jogada[1] != 0) {
+    JogarComputador();
+  }
+  VerificaCartasNaMesa();
+  if(jogada[1] != 0) {
+    JogarComputador();
+  }
+  VerificaCartasNaMesa();
 }
 
 function DarCartas() {
@@ -181,6 +193,7 @@ function VerificaCartasNaMesa() {
       if(darCartas == true) {
         if(jogadorComecaRodada == true) {
           jogadorComecaRodada = !jogadorComecaRodada;
+        }
         DarCartas();
       }
   }
@@ -238,3 +251,5 @@ function JogarComputador() {
     console.log("Computador carta " + indiceCarta + " - " + document.getElementById(cartaComputador).getElementsByClassName("estampa")[0].getAttribute("data_print"));
   }
 }
+
+jogo();
