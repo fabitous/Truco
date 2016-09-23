@@ -33,6 +33,7 @@ var baralho = [
   "<div class='estampa' valor='104' data_print='K ♠'><img src='img/K_espada.png'></img></div>",
 ]
 
+var darCartas = false;
 var indiceCarta = 0;
 var primeira;
 var cartaNaMesa;
@@ -50,9 +51,21 @@ var jogadorTorna = false;
 var jogadorComecaRodada = confirm("Quer começar?");
 
 
-DarCartas();
+function game() {
+do{
+  if(darCartas) {
+    DarCartas();
+  }
+  if(jogadorComecaRodada || jogadorTorna) {
+    do{
 
-
+    }while(jogada[1] == 0)
+  } else {
+    JogarComputador();
+  }
+  VerificaCartasNaMesa();
+while(true);
+}
 
 function DarCartas() {
   if(pontos[0] <= 11 && pontos[1] <= 11) {
@@ -207,7 +220,6 @@ function ComputadorTrucar() {
     }
   }
 }
-
 
 function JogarComputador() {
  var cartaComputador = mapCartasCamputador[indiceCarta];
