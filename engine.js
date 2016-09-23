@@ -33,7 +33,7 @@ var baralho = [
   "<div class='estampa' valor='104' data_print='K ♠'><img src='img/K_espada.png'></img></div>",
 ]
 
-var i = 0;
+var indiceCarta = 0;
 var primeira;
 var cartaNaMesa;
 var tento = 1;
@@ -41,12 +41,22 @@ var truco = false;
 var pernas = [0,0];
 var pontos = [0,0];
 var jogada = [0,0];
-var vez = confirm("Quer começar?");
+var mapCartasCamputador = {
+  0 : "cartaComputador1",
+  1 : "cartaComputador2",
+  2 : "cartaComputador3",
+};
+var jogadorTorna = false;
+var jogadorComecaRodada = confirm("Quer começar?");
+
+
 DarCartas();
+
+
 
 function DarCartas() {
   if(pontos[0] <= 11 && pontos[1] <= 11) {
-    i = 0;
+    indiceCarta = 0;
     tento = 1;
     pernas[0] = 0;
     pernas[1] = 0;
@@ -63,13 +73,15 @@ function DarCartas() {
       document.getElementById("btn-truco").disabled  = true;
     }
     baralho.sort(function() { return .5 - Math.random() });
-    document.getElementById("carta1").innerHTML = baralho[0];
-    document.getElementById("carta2").innerHTML = baralho[1];
-    document.getElementById("carta3").innerHTML = baralho[2];
-    maoDoComputador = [baralho[3],baralho[4],baralho[5]];
+    document.getElementById("carta2").innerHTML = baralho[indiceCarta];indiceCarta++;
+    document.getElementById("carta1").innerHTML = baralho[indiceCarta];indiceCarta++;
+    document.getElementById("carta3").innerHTML = baralho[indiceCarta];indiceCarta++;
+    document.getElementById("cartaComputador1").innerHTML = baralho[indiceCarta];indiceCarta++;
+    document.getElementById("cartaComputador2").innerHTML = baralho[indiceCarta];indiceCarta++;
+    document.getElementById("cartaComputador3").innerHTML = baralho[indiceCarta];indiceCarta = 0;
     document.getElementById("mesa").innerHTML = " ";
     jogada[0] = 0;
-      if(vez == false && jogada[0] == 0) {
+      if(jogadorComecaRodada == false && jogada[0] == 0) {
         JogarComputador();
       }
     } else {
@@ -96,12 +108,12 @@ function Jogar(clicked) {
       cartaNaMesa = document.getElementById(clicked).innerHTML;
       document.getElementById(clicked).innerHTML = " ";
       document.getElementById("mesa").innerHTML += cartaNaMesa;
-      console.log("Jogador carta  " + i + " - " + consolePrint);
+      console.log("Jogador carta  " + indiceCarta + " - " + consolePrint);
     }
     if (jogada[0] != 0 && jogada[1] != 0) {
       VerificaCartasNaMesa();
     }
-    if(i == 0 && jogada[1] == 0 && vez == true) {
+    if(indiceCarta == 0 && jogada[1] == 0 && jogadorComecaRodada == true) {
 
     } else if(cartasDadas != true) {
       JogarComputador();
@@ -118,13 +130,13 @@ function VerificaCartasNaMesa() {
       var darCartas = false;
       if(jogada[0] > jogada[1]) {
         pernas[0] += 1;
-        if(i == 0) {primeira = "computer";} else {primeira = "player";}
+        if(indiceCarta == 0) {primeira = "computer";} else {primeira = "player";}
       }
       if(jogada[1] > jogada[0]) {
         pernas[1] += 1;
-        if(i == 0) {primeira = "player";} else {primeira = "computer";}
+        if(indiceCarta == 0) {primeira = "player";} else {primeira = "computer";}
       }
-      i++;
+      indiceCarta++;
       document.getElementById("mesa").innerHTML = null;
       jogada[0] = 0;
       jogada[1] = 0;
@@ -140,7 +152,7 @@ function VerificaCartasNaMesa() {
           console.log("Seus tentos: " + pontos[1]);
         }
         darCartas = true;
-      } else if (i == 3) {
+      } else if (indiceCarta == 3) {
         if(primeira == "player") {
           pontos[1] += tento;
           document.getElementById("playerpoints").innerHTML = pontos[1];
@@ -154,11 +166,8 @@ function VerificaCartasNaMesa() {
         darCartas = true;
       }
       if(darCartas == true) {
-        if(vez == true) {
-          vez = false;
-        } else {
-          vez = true;
-        }
+        if(jogadorComecaRodada == true) {
+          jogadorComecaRodada = !jogadorComecaRodada;
         DarCartas();
       }
   }
@@ -182,7 +191,7 @@ function JogadorTrucar() {
 }
 
 function ComputadorTrucar() {
-  if(tento < 3 && i > 0)  {
+  if(tento < 3 && indiceCarta > 0)  {
     if(confirm("TTTTRRRRRRRRUUUUUUUCCCCOOOO LADRÃO!")) {
       tento = 3;
       document.getElementById("status").innerHTML = "&nbsp;Trucado!";
@@ -199,18 +208,21 @@ function ComputadorTrucar() {
   }
 }
 
+
 function JogarComputador() {
+ var cartaComputador = mapCartasCamputador[indiceCarta];
  if((Math.random(1) > 0.77)&&(pontos[0]<11))  {
      if(ComputadorTrucar()) {
-       jogada[0] = maoDoComputador[i].slice(28,31);
-       document.getElementById("mesa").innerHTML += maoDoComputador[i];
-       console.log("Computador carta " + i + " - " + maoDoComputador[i].slice(42,49));
+       var cartaComputador = "cartaComputador" + indiceCarta;
+       jogada[0] = document.getElementById(cartaComputador).getElementsByClassName("estampa")[0].getAttribute("valor");
+       document.getElementById("mesa").innerHTML += document.getElementById(cartaComputador).innerHTML;
+       console.log("Computador carta " + indiceCarta + " - " + document.getElementById(cartaComputador).getElementsByClassName("estampa")[0].getAttribute("data_print"));
      }else{
        DarCartas();
      }
   } else {
-    jogada[0] = maoDoComputador[i].slice(28,31);
-    document.getElementById("mesa").innerHTML += maoDoComputador[i];
-    console.log("Computador carta " + i + " - " + maoDoComputador[i].slice(42,49));
+    jogada[0] = document.getElementById(cartaComputador).getElementsByClassName("estampa")[0].getAttribute("valor");
+    document.getElementById("mesa").innerHTML += document.getElementById(cartaComputador).innerHTML;
+    console.log("Computador carta " + indiceCarta + " - " + document.getElementById(cartaComputador).getElementsByClassName("estampa")[0].getAttribute("data_print"));
   }
 }

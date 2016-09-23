@@ -28,6 +28,14 @@ p {
   margin: 12px;
 }
 
+.cartaComputador {
+  width: 104px;
+  height: 152px;
+  display: inline-block;;
+  margin: 12px;
+  display: none;
+}
+
 .myBtn {
   margin: 8px;
   height: 40px;
